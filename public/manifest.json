@@ -17,13 +17,6 @@
     "default_popup": "popup.html",
     "default_title": "CC Generator"
   },
-  "background": {
-    "scripts": [
-      "eventPage.js",
-      "ccFunctions.js"
-    ],
-    "persistent": false
-  },
   "permissions": [
     "storage",
     "contextMenus",
