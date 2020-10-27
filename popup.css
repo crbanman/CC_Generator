@@ -47,8 +47,5 @@ select {
   cursor: pointer;
   outline: none;
   font-weight: bold;
-}
 
-#options {
-  text-align: right;
 }
