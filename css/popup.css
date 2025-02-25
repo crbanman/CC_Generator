@@ -1,0 +1,188 @@
+/* Import common styles */
+@import "common.css";
+
+/* Popup-specific styles */
+.container {
+  width: 300px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Popup Header with Settings Link */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.popup-header h1 {
+  margin: 0;
+  text-align: left;
+}
+
+.settings-link {
+  font-size: 14px;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.settings-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.card-type-container {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Credit Card Number Display */
+.cc-number-container {
+  position: relative;
+  padding: 15px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  outline: none;
+}
+
+.cc-number-container:hover {
+  border-color: var(--accent-color);
+}
+
+.cc-number-container:active {
+  transform: scale(0.98);
+}
+
+.cc-number-container:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+}
+
+.cc-number {
+  font-size: 18px;
+  font-family: monospace;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  user-select: none;
+}
+
+/* Hover tooltip */
+.cc-number-container .hover-tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.cc-number-container .hover-tooltip:before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent var(--tooltip-bg) transparent;
+}
+
+.cc-number-container:hover .hover-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Copy Tooltip */
+.copy-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.copy-tooltip.show {
+  opacity: 1;
+  visibility: visible;
+  animation: fadeInOut 1.5s ease-in-out;
+}
+
+.copy-tooltip.show ~ .hover-tooltip {
+  opacity: 0;
+}
+
+/* Generate Button */
+.generate-btn {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Error States */
+.error-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 5px;
+  padding: 8px;
+  background-color: rgba(234, 67, 53, 0.1);
+  color: #ea4335;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.error-container.hidden {
+  display: none;
+}
+
+/* Disabled States */
+.cc-display.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cc-display.disabled:hover {
+  border-color: var(--input-border);
+}
+
+/* Copied State */
+.cc-number-container.copied {
+  background-color: rgba(52, 168, 83, 0.1);
+}

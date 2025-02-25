@@ -1,0 +1,31 @@
+{
+  "name": "cc-generator",
+  "version": "2.0.0",
+  "description": "Generate valid test credit card numbers",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "clean": "rm -rf dist && rm -rf build",
+    "prebuild": "npm run clean && mkdir -p dist",
+    "build": "cp -r manifest.json images css html js dist/",
+    "package": "npm run build && mkdir -p build && cd dist && zip -r ../build/cc-generator-v$npm_package_version.zip *"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.2.2",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.1",
+    "jsdom": "^24.0.0",
+    "prettier": "^3.5.2",
+    "vitest": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+}

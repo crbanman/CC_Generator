@@ -1,0 +1,10 @@
+# Build artifacts
+node_modules
+coverage
+gen-docs
+
+# Package manager files
+pnpm-lock.yaml
+
+# Git files
+.git

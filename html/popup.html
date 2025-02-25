@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CC Generator</title>
+    <link rel="stylesheet" href="../css/popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="popup-header">
+        <h1>CC Generator</h1>
+        <a href="#" id="settings-link" class="settings-link" title="Settings"
+          >Settings</a
+        >
+      </header>
+
+      <!-- Card Type Dropdown -->
+      <div class="card-type-container">
+        <label for="card-type">Card Type:</label>
+        <select id="card-type" aria-label="Select credit card type">
+          <option value="visa">Visa</option>
+          <option value="mastercard">Mastercard</option>
+          <option value="amex">American Express</option>
+          <option value="discover">Discover</option>
+        </select>
+      </div>
+
+      <!-- Credit Card Number Display -->
+      <div
+        class="cc-number-container"
+        tabindex="0"
+        role="button"
+        aria-label="Click to copy credit card number"
+      >
+        <div id="cc-number" class="cc-number">4111 1111 1111 1111</div>
+        <div id="copy-tooltip" class="copy-tooltip" aria-hidden="true">
+          Copied!
+        </div>
+        <div class="hover-tooltip">Click to copy</div>
+      </div>
+
+      <!-- Generate Button -->
+      <button id="generate-btn" class="generate-btn">Generate New</button>
+    </div>
+
+    <script src="../js/generator.js" type="module"></script>
+    <script src="../js/popup.js" type="module"></script>
+  </body>
+</html>
