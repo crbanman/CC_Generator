@@ -8,6 +8,8 @@ A Chrome extension for generating valid test credit card numbers for development
 - Create custom card numbers with specific prefixes and lengths
 - Validate credit card numbers using the Luhn algorithm
 - Identify card types from existing numbers
+- Dark/light theme support
+- Persistent settings storage
 
 ## Installation
 
@@ -32,13 +34,14 @@ A Chrome extension for generating valid test credit card numbers for development
 3. Click "Generate Card Number" to create a new test card number
 4. Click "Copy" to copy the number to your clipboard
 5. Paste the number wherever you need it for testing
+6. Access additional settings via the settings page
 
 ## Development
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- pnpm (v8 or higher)
+- Node.js (v20 or higher)
+- pnpm (v9 or higher)
 
 ### Setup
 
@@ -84,10 +87,18 @@ The packaged zip file will be named according to the version in package.json (e.
 ### Project Structure
 
 - `js/` - Core JavaScript modules
+  - `background.js` - Service worker background script
   - `cardTypes.js` - Card type definitions and validation
   - `customMask.js` - Custom mask parsing and validation
   - `generator.js` - Credit card number generation
   - `luhn.js` - Luhn algorithm implementation
+  - `popup.js` - Main popup UI functionality
+  - `settings.js` - Settings page functionality
+  - `storage.js` - Chrome storage management
+  - `theme.js` - Theme management (dark/light)
+- `html/` - HTML templates for popup and settings
+- `css/` - Stylesheets
+- `images/` - Extension icons and images
 - `test/` - Test files
   - `cardTypes.test.js` - Tests for card type functionality
   - `customMask.test.js` - Tests for custom mask parsing
@@ -96,7 +107,7 @@ The packaged zip file will be named according to the version in package.json (e.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GPL-3.0 License.
 
 ## Disclaimer
 
