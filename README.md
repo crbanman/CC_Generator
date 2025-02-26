@@ -13,9 +13,9 @@ A Chrome extension for generating valid test credit card numbers for development
 
 ## Installation
 
-### From Chrome Web Store (Coming Soon)
+### From Chrome Web Store
 
-1. Visit the Chrome Web Store page for CC Generator
+1. Visit the [Chrome Web Store page for CC Generator](https://chrome.google.com/webstore/detail/cc-generator/klcpekhgaebbghffffpofgaipfcdplkc)
 2. Click "Add to Chrome"
 3. Confirm the installation
 
@@ -93,7 +93,7 @@ See the [e2e-tests/README.md](e2e-tests/README.md) file for more details on the 
 
 ### Building and Packaging
 
-To build and package the extension for distribution:
+To build and package the extension for development:
 
 ```bash
 # Clean, build, and create a distribution package
@@ -104,9 +104,40 @@ This will:
 
 1. Clean previous build artifacts
 2. Create a `dist` directory with all necessary extension files
-3. Package everything into a zip file in the `build` directory
+3. Update the manifest.json with the version from package.json
+4. Package everything into a zip file in the `build` directory
 
-The packaged zip file will be named according to the version in package.json (e.g., `cc-generator-v2.0.0.zip`).
+You can also specify a custom version:
+
+```bash
+# Build with a specific version
+VERSION=2.1.0 pnpm package
+```
+
+The packaged zip file will be named according to the version (e.g., `cc-generator-v2.0.0.zip`).
+
+### Release Process
+
+The project uses GitHub Actions to automatically build and release the extension when a new version tag is pushed. To create a new release:
+
+1. Update the version in `package.json`
+2. Create and push a git tag manually:
+
+```bash
+git tag -a v1.2.3 -m "Release v1.2.3"
+git push origin v1.2.3
+```
+
+This will:
+
+1. Create a git tag with your specified version (e.g., `v1.2.3`)
+2. Push the tag to GitHub
+3. Trigger the release workflow which will:
+   - Extract the version from the tag
+   - Build and package the extension with that version
+   - Create a GitHub release with the packaged extension
+
+The release will be available on the GitHub Releases page with the extension zip file attached.
 
 ### Project Structure
 
