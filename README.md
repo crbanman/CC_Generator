@@ -54,7 +54,11 @@ pnpm install
 
 ### Testing
 
-This project uses Vitest for testing. The following test commands are available:
+This project uses Vitest for unit testing and Playwright for end-to-end testing.
+
+#### Unit Tests
+
+The following unit test commands are available:
 
 ```bash
 # Run tests once
@@ -66,6 +70,26 @@ pnpm test:watch
 # Run tests with coverage
 pnpm test:coverage
 ```
+
+#### End-to-End Tests
+
+The project includes end-to-end tests that verify the extension's functionality in a Chrome browser. Tests run in headless mode by default for faster execution.
+
+```bash
+# Run e2e tests with clean context (recommended)
+pnpm test:e2e:clean
+
+# Run e2e tests in headed mode (visible browser) with clean context
+pnpm test:e2e:headed:clean
+
+# Run e2e tests with UI mode and clean context
+pnpm test:e2e:ui:clean
+
+# Run e2e tests in debug mode with clean context
+pnpm test:e2e:debug:clean
+```
+
+See the [e2e-tests/README.md](e2e-tests/README.md) file for more details on the end-to-end tests.
 
 ### Building and Packaging
 

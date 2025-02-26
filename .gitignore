@@ -28,3 +28,8 @@ pnpm-debug.log*
 # Build
 build/
 dist/
+
+# Playwright
+.playwright-user-data/
+test-results/
+playwright-report/
