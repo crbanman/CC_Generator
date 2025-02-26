@@ -129,7 +129,7 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Build
-        run: pnpm build
+        run: pnpm build && pnpm update-manifest
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -168,7 +168,7 @@ jobs:
           path: dist/
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
         run: pnpm test:e2e
