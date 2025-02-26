@@ -1,0 +1,296 @@
+/* CSS Variables for Theming */
+:root {
+  /* Light theme variables (default) */
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --accent-color: #4285f4;
+  --accent-hover: #2b68c5;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
+  --button-primary-bg: #4285f4;
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #2b68c5;
+  --button-secondary-bg: #f1f3f4;
+  --button-secondary-text: #333333;
+  --button-secondary-hover: #e0e0e0;
+  --button-danger-bg: #ea4335;
+  --button-danger-text: #ffffff;
+  --button-danger-hover: #d33426;
+  --toggle-bg: #cccccc;
+  --toggle-active-bg: #4285f4;
+  --toggle-knob: #ffffff;
+  --code-bg: #f1f3f4;
+  --code-text: #333333;
+  --tooltip-bg: rgba(0, 0, 0, 0.8);
+  --tooltip-text: #ffffff;
+}
+
+/* Dark theme */
+.theme-dark {
+  --bg-primary: #202124;
+  --bg-secondary: #292a2d;
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0a6;
+  --accent-color: #8ab4f8;
+  --accent-hover: #aecbfa;
+  --border-color: #5f6368;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --input-bg: #303134;
+  --input-border: #5f6368;
+  --button-primary-bg: #8ab4f8;
+  --button-primary-text: #202124;
+  --button-primary-hover: #aecbfa;
+  --button-secondary-bg: #3c4043;
+  --button-secondary-text: #e8eaed;
+  --button-secondary-hover: #5f6368;
+  --button-danger-bg: #f28b82;
+  --button-danger-text: #202124;
+  --button-danger-hover: #f6aea9;
+  --toggle-bg: #5f6368;
+  --toggle-active-bg: #8ab4f8;
+  --toggle-knob: #ffffff;
+  --code-bg: #303134;
+  --code-text: #e8eaed;
+  --tooltip-bg: rgba(232, 234, 237, 0.8);
+  --tooltip-text: #202124;
+}
+
+/* Light theme (explicit) */
+.theme-light {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --accent-color: #4285f4;
+  --accent-hover: #2b68c5;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --input-bg: #ffffff;
+  --input-border: #cccccc;
+  --button-primary-bg: #4285f4;
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #2b68c5;
+  --button-secondary-bg: #f1f3f4;
+  --button-secondary-text: #333333;
+  --button-secondary-hover: #e0e0e0;
+  --button-danger-bg: #ea4335;
+  --button-danger-text: #ffffff;
+  --button-danger-hover: #d33426;
+  --toggle-bg: #cccccc;
+  --toggle-active-bg: #4285f4;
+  --toggle-knob: #ffffff;
+  --code-bg: #f1f3f4;
+  --code-text: #333333;
+  --tooltip-bg: rgba(0, 0, 0, 0.8);
+  --tooltip-text: #ffffff;
+}
+
+/* Base Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.container {
+  background-color: var(--bg-secondary);
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+h1 {
+  color: var(--text-primary);
+  margin-top: 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+label {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+/* Form Controls */
+select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px top 50%;
+  background-size: 10px auto;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+select:hover {
+  border-color: var(--accent-color);
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+}
+
+/* Button Styles */
+button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+button:hover {
+  background-color: var(--button-primary-hover);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+}
+
+.secondary-btn:hover {
+  background-color: var(--button-secondary-hover);
+}
+
+.danger-btn {
+  background-color: var(--button-danger-bg);
+  color: var(--button-danger-text);
+}
+
+.danger-btn:hover {
+  background-color: var(--button-danger-hover);
+}
+
+/* Toggle Switch */
+.toggle-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.toggle-label {
+  display: block;
+  width: 40px;
+  height: 20px;
+  background-color: var(--toggle-bg);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-label:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: var(--toggle-active-bg);
+}
+
+.toggle-input:checked + .toggle-label:after {
+  transform: translateX(20px);
+}
+
+.toggle-status {
+  margin-left: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  min-width: 30px;
+}
+
+/* Animations */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Error and Success Messages */
+.error-message {
+  color: #ea4335;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 8px;
+  background-color: rgba(234, 67, 53, 0.1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.success-message {
+  color: #34a853;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 8px;
+  background-color: rgba(52, 168, 83, 0.1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  display: none !important;
+}

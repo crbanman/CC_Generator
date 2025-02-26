@@ -1,0 +1,42 @@
+{
+  "name": "cc-generator",
+  "version": "2.0.0",
+  "description": "Generate valid test credit card numbers",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "clear:playwright-data": "rm -rf .playwright-user-data",
+    "test:e2e": "playwright test",
+    "test:e2e:clean": "pnpm run clear:playwright-data && playwright test",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:debug:clean": "pnpm run clear:playwright-data && playwright test --debug",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:headed:clean": "pnpm run clear:playwright-data && playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:ui:clean": "pnpm run clear:playwright-data && playwright test --ui",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "clean": "rm -rf dist && rm -rf build",
+    "prebuild": "pnpm run clean && mkdir -p dist",
+    "build": "cp -r images css html js dist/",
+    "update-manifest": "cp manifest.json dist/ && jq \".version = \\\"${VERSION:-$npm_package_version}\\\"\" dist/manifest.json > dist/manifest.json.tmp && mv dist/manifest.json.tmp dist/manifest.json",
+    "package": "pnpm run prebuild && pnpm run build && pnpm run update-manifest && mkdir -p build && cd dist && zip -r ../build/cc-generator-v${VERSION:-$npm_package_version}.zip *"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@vitest/coverage-v8": "^1.2.2",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.1",
+    "jsdom": "^24.0.0",
+    "prettier": "^3.5.2",
+    "vitest": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+}

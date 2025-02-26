@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CC Generator Settings</title>
+    <link rel="stylesheet" href="../css/settings.css" />
+  </head>
+  <body class="settings-page">
+    <div class="container">
+      <header>
+        <h1>CC Generator Settings</h1>
+        <p class="auto-save-note">
+          Settings are saved automatically as you make changes.
+        </p>
+      </header>
+
+      <form id="settings-form">
+        <!-- General Settings Section -->
+        <section class="settings-section">
+          <h2>General Settings</h2>
+
+          <div class="setting-item">
+            <label for="generate-on-open">Generate new number on open:</label>
+            <div class="toggle-container">
+              <input
+                type="checkbox"
+                id="generate-on-open"
+                class="toggle-input"
+              />
+              <label for="generate-on-open" class="toggle-label"></label>
+              <span class="toggle-status">No</span>
+            </div>
+          </div>
+          <p class="help-text">
+            When enabled, the extension will automatically generate a new credit
+            card number each time you open the popup. When disabled, the
+            extension will show the last generated number when opened.
+          </p>
+
+          <div class="setting-item">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select" aria-label="Select theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="auto">Auto (System)</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Custom Number Configuration Section -->
+        <section class="settings-section">
+          <h2>Custom Number Configuration</h2>
+
+          <div class="setting-item">
+            <label for="enable-custom-masks"
+              >Enable custom number patterns:</label
+            >
+            <div class="toggle-container">
+              <input
+                type="checkbox"
+                id="enable-custom-masks"
+                class="toggle-input"
+              />
+              <label for="enable-custom-masks" class="toggle-label"></label>
+              <span class="toggle-status">No</span>
+            </div>
+          </div>
+
+          <p class="help-text">
+            Define custom card number patterns. Each line should contain a
+            pattern in one of these formats:
+            <br />•
+            <code>prefix/length</code>
+            - Generates a number with the specified length starting with the
+            prefix
+            <br />&nbsp;&nbsp;&nbsp; Example:
+            <code>4111/16</code>
+            for a Visa-like number (16 digits starting with 4111)
+            <br />&nbsp;&nbsp;&nbsp; Example:
+            <code>5500/16</code>
+            for a Mastercard-like number (16 digits starting with 5500)
+            <br />•
+            <code>full number</code>
+            - Uses exactly this number
+            <br />&nbsp;&nbsp;&nbsp; Example:
+            <code>378282246310005</code>
+            for a specific American Express-like number
+          </p>
+          <textarea
+            id="custom-config"
+            rows="7"
+            placeholder="Enter custom patterns (one per line)"
+          ></textarea>
+          <div id="custom-config-error" class="error-message hidden"></div>
+          <p class="help-text">
+            <small
+              >Custom patterns are saved when you click outside the text
+              area.</small
+            >
+          </p>
+        </section>
+
+        <!-- History Section -->
+        <section class="settings-section">
+          <h2>Generated Numbers History</h2>
+
+          <div id="history-container">
+            <div class="history-log" id="history-log">
+              <div>No history available.</div>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button type="button" id="clear-history" class="danger-btn">
+              Clear History
+            </button>
+          </div>
+        </section>
+
+        <!-- Reset Section -->
+        <section class="settings-section">
+          <h2>Reset Settings</h2>
+          <p class="help-text">
+            Reset all settings to their default values. This action cannot be
+            undone.
+          </p>
+          <div class="action-buttons">
+            <button type="button" id="reset-settings" class="danger-btn">
+              Reset All Settings
+            </button>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal-container hidden">
+      <div class="modal-content">
+        <h2>Confirm Reset</h2>
+        <p>
+          Are you sure you want to reset all settings to their default values?
+          This action cannot be undone.
+        </p>
+        <div class="modal-buttons">
+          <button type="button" id="cancel-reset" class="secondary-btn">
+            Cancel
+          </button>
+          <button type="button" id="confirm-reset" class="danger-btn">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/settings.js" type="module"></script>
+  </body>
+</html>
