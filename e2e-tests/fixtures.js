@@ -20,8 +20,8 @@ export const test = base.extend({
     const { exec } = await import("child_process");
     await new Promise((resolve, reject) => {
       exec("pnpm build && pnpm update-manifest", (error) => {
-        if (error) reject(error);
-        else resolve();
+        if (error) {reject(error);}
+        else {resolve();}
       });
     });
 
