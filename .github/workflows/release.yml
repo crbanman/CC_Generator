@@ -39,6 +39,9 @@ jobs:
           pnpm test
           pnpm test:coverage
 
+      - name: Build extension for e2e tests
+        run: pnpm build && pnpm update-manifest
+
       - name: Install Playwright browsers for testing
         run: pnpm exec playwright install --with-deps chromium
 
