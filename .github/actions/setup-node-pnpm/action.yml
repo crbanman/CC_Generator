@@ -1,7 +1,7 @@
-name: 'Setup Node.js and pnpm'
-description: 'Setup Node.js, install pnpm, and restore node_modules cache'
+name: "Setup Node.js and pnpm"
+description: "Setup Node.js, install pnpm, and restore node_modules cache"
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Setup Node.js
       uses: actions/setup-node@v4
