@@ -1,0 +1,21 @@
+name: "Setup Node.js and pnpm"
+description: "Setup Node.js, install pnpm, and restore node_modules cache"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v3
+      with:
+        version: "9.15.0"
+        run_install: false
+
+    - name: Restore node_modules
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
