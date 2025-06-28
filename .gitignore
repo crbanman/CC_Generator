@@ -28,6 +28,7 @@ pnpm-debug.log*
 # Build
 build/
 dist/
+dist-firefox/
 
 # Playwright
 .playwright-user-data/

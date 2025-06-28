@@ -25,8 +25,9 @@
     "build": "cp -r images css html js dist/",
     "update-manifest": "cp manifest.json dist/ && jq \".version = \\\"${VERSION:-$npm_package_version}\\\"\" dist/manifest.json > dist/manifest.json.tmp && mv dist/manifest.json.tmp dist/manifest.json",
     "build:firefox": "pnpm run prebuild && pnpm run build && cp manifest-firefox.json dist/manifest.json && jq \".version = \\\"${VERSION:-$npm_package_version}\\\"\" dist/manifest.json > dist/manifest.json.tmp && mv dist/manifest.json.tmp dist/manifest.json",
-    "package": "pnpm run prebuild && pnpm run build && pnpm run update-manifest && mkdir -p build && cd dist && zip -r ../build/cc-generator-v${VERSION:-$npm_package_version}.zip *",
-    "package:firefox": "pnpm run build:firefox && mkdir -p build && cd dist && zip -r ../build/cc-generator-firefox-v${VERSION:-$npm_package_version}.zip *"
+    "package:chrome": "pnpm run prebuild && pnpm run build && pnpm run update-manifest && mkdir -p build && cd dist && zip -r ../build/cc-generator-v${VERSION:-$npm_package_version}.zip *",
+    "package:firefox": "mkdir -p build && mkdir -p dist-firefox && cp -r images css html js dist-firefox/ && cp manifest-firefox.json dist-firefox/manifest.json && jq \".version = \\\"${VERSION:-$npm_package_version}\\\"\" dist-firefox/manifest.json > dist-firefox/manifest.json.tmp && mv dist-firefox/manifest.json.tmp dist-firefox/manifest.json && cd dist-firefox && zip -r ../build/cc-generator-firefox-v${VERSION:-$npm_package_version}.zip *",
+    "package": "pnpm run package:chrome && pnpm run package:firefox"
   },
   "devDependencies": {
     "@playwright/test": "^1.50.1",

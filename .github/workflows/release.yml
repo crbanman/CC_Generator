@@ -48,15 +48,10 @@ jobs:
       - name: Run E2E tests
         run: pnpm test:e2e
 
-      - name: Package Chrome extension
+      - name: Package both Chrome and Firefox extensions
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
         run: pnpm package
-
-      - name: Package Firefox extension
-        env:
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
-        run: pnpm package:firefox
 
       - name: Create GitHub Release
         id: create_release
