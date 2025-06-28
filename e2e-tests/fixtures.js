@@ -16,7 +16,7 @@ const userDataDir = path.join(__dirname, "..", ".playwright-user-data");
  */
 export const test = base.extend({
   context: async ({}, use) => {
-    // Build Chrome version first  
+    // Build Chrome version first
     const { exec } = await import("child_process");
     await new Promise((resolve, reject) => {
       exec("pnpm build && pnpm update-manifest", (error) => {
@@ -24,7 +24,7 @@ export const test = base.extend({
         else resolve();
       });
     });
-    
+
     // Launch Chrome with extension
     const context = await chromium.launchPersistentContext(userDataDir, {
       channel: "chromium",
@@ -34,7 +34,7 @@ export const test = base.extend({
       ],
       permissions: ["clipboard-read", "clipboard-write"],
     });
-    
+
     await use(context);
     await context.close();
   },
@@ -45,7 +45,7 @@ export const test = base.extend({
       background = await context.waitForEvent("serviceworker");
     }
     const extensionId = background.url().split("/")[2];
-    
+
     await use(extensionId);
   },
   page: async ({ context }, use) => {

@@ -132,7 +132,7 @@ pnpm package:firefox
 # Build Chrome version only (creates dist/ directory)
 pnpm build && pnpm update-manifest
 
-# Build Firefox version only (creates dist/ directory)  
+# Build Firefox version only (creates dist/ directory)
 pnpm build:firefox
 
 # Package Chrome extension (creates build/cc-generator-v*.zip)
@@ -155,11 +155,12 @@ You can also specify a custom version:
 # Build Chrome extension with a specific version
 VERSION=2.1.0 pnpm package
 
-# Build Firefox extension with a specific version  
+# Build Firefox extension with a specific version
 VERSION=2.1.0 pnpm package:firefox
 ```
 
 The packaged zip files will be named according to the browser and version:
+
 - Chrome: `cc-generator-v2.0.0.zip`
 - Firefox: `cc-generator-firefox-v2.0.0.zip`
 
