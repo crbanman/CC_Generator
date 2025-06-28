@@ -51,7 +51,7 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run E2E tests for Chrome
-        run: pnpm test:e2e:chrome
+        run: pnpm test:e2e
 
       - name: Build and package Chrome extension
         env:
