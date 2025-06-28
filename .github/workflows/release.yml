@@ -6,29 +6,7 @@ on:
       - "v*"
 
 jobs:
-  check-ci:
-    runs-on: ubuntu-latest
-    outputs:
-      ci-passed: ${{ steps.check.outputs.ci-passed }}
-    steps:
-      - name: Check if CI passed for this commit
-        id: check
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { data: runs } = await github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'ci.yml',
-              head_sha: context.sha,
-              status: 'completed'
-            });
-            const ciPassed = runs.workflow_runs.some(run => run.conclusion === 'success');
-            core.setOutput('ci-passed', ciPassed);
-            console.log(`CI passed for commit ${context.sha}: ${ciPassed}`);
-
   release:
-    needs: check-ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,53 +34,26 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
-      - name: Download CI build artifacts
-        if: needs.check-ci.outputs.ci-passed == 'true'
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          workflow: ci.yml
-          workflow_conclusion: success
-          name: build-output
-          path: dist/
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-
-      - name: Run tests and build (if CI didn't pass or artifacts not found)
-        if: needs.check-ci.outputs.ci-passed != 'true'
+      - name: Run tests before building
         run: |
           pnpm test
           pnpm test:coverage
-          pnpm exec playwright install --with-deps chromium
-          pnpm test:e2e
-          pnpm build && pnpm update-manifest
 
-      - name: Build only (if CI passed and artifacts downloaded)
-        if: needs.check-ci.outputs.ci-passed == 'true'
-        run: |
-          # Check if dist exists from artifact download
-          if [ ! -d "dist" ]; then
-            echo "No artifacts found, building from scratch"
-            pnpm build && pnpm update-manifest
-          else
-            echo "Using CI build artifacts"
-          fi
+      - name: Install Playwright browsers for testing
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: pnpm test:e2e
 
       - name: Package Chrome extension
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
-        run: |
-          mkdir -p build
-          cd dist
-          zip -r ../build/cc-generator-v${VERSION}.zip *
+        run: pnpm package
 
-      - name: Build and package Firefox extension
+      - name: Package Firefox extension
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
-        run: |
-          pnpm build:firefox
-          mkdir -p build
-          cd dist
-          zip -r ../build/cc-generator-firefox-v${VERSION}.zip *
+        run: pnpm package:firefox
 
       - name: Create GitHub Release
         id: create_release
