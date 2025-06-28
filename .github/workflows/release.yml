@@ -42,17 +42,35 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
-      - name: Build and package extension
+      - name: Run tests before building
+        run: |
+          pnpm test
+          pnpm test:coverage
+
+      - name: Install Playwright browsers for testing
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run E2E tests for Chrome
+        run: pnpm test:e2e:chrome
+
+      - name: Build and package Chrome extension
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
         run: pnpm package
+
+      - name: Build and package Firefox extension
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+        run: pnpm package:firefox
 
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
           name: CC Generator v${{ steps.get_version.outputs.VERSION }}
-          files: build/cc-generator-v${{ steps.get_version.outputs.VERSION }}.zip
+          files: |
+            build/cc-generator-v${{ steps.get_version.outputs.VERSION }}.zip
+            build/cc-generator-firefox-v${{ steps.get_version.outputs.VERSION }}.zip
           draft: false
           prerelease: false
           generate_release_notes: true

@@ -1,6 +1,6 @@
 # Credit Card Generator
 
-A Chrome extension for generating valid test credit card numbers for development and testing purposes.
+A cross-platform browser extension for generating valid test credit card numbers for development and testing purposes. Available for both Chrome and Firefox.
 
 ## Features
 
@@ -19,22 +19,39 @@ A Chrome extension for generating valid test credit card numbers for development
 2. Click "Add to Chrome"
 3. Confirm the installation
 
-### Manual Installation (Developer Mode)
+### Manual Installation - Chrome (Developer Mode)
 
 1. Download or clone this repository
-2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable "Developer mode" in the top-right corner
-4. Click "Load unpacked" and select the directory containing this extension
-5. The extension should now be installed and visible in your toolbar
+2. Build the Chrome version: `pnpm package`
+3. Open Chrome and navigate to `chrome://extensions/`
+4. Enable "Developer mode" in the top-right corner
+5. Click "Load unpacked" and select the `dist` directory
+6. The extension should now be installed and visible in your toolbar
+
+### Manual Installation - Firefox (Developer Mode)
+
+1. Download or clone this repository
+2. Build the Firefox version: `pnpm package:firefox`
+3. Open Firefox and navigate to `about:debugging`
+4. Click "This Firefox" in the sidebar
+5. Click "Load Temporary Add-on"
+6. Navigate to the `build` directory and select `cc-generator-firefox-v*.zip`
+7. The extension should now be installed and visible in your toolbar
+
+### Firefox Add-ons Store (Coming Soon)
+
+Firefox add-on store submission is planned for a future release.
 
 ## Usage
 
-1. Click the CC Generator icon in your Chrome toolbar
+1. Click the CC Generator icon in your browser toolbar
 2. Select the desired card type from the dropdown
 3. Click "Generate Card Number" to create a new test card number
 4. Click "Copy" to copy the number to your clipboard
 5. Paste the number wherever you need it for testing
 6. Access additional settings via the settings page
+
+The extension works identically in both Chrome and Firefox.
 
 ## Development
 
@@ -73,7 +90,7 @@ pnpm test:coverage
 
 #### End-to-End Tests
 
-The project includes end-to-end tests that verify the extension's functionality in a Chrome browser. Tests run in headless mode by default for faster execution.
+The project includes end-to-end tests that verify the extension's functionality in Chrome.
 
 ```bash
 # Run e2e tests with clean context (recommended)
@@ -93,28 +110,59 @@ See the [e2e-tests/README.md](e2e-tests/README.md) file for more details on the 
 
 ### Building and Packaging
 
-To build and package the extension for development:
+The extension supports both Chrome and Firefox. Use the appropriate build commands:
+
+#### Chrome Extension
 
 ```bash
-# Clean, build, and create a distribution package
+# Clean, build, and create a Chrome distribution package
 pnpm package
 ```
 
-This will:
+#### Firefox Extension
 
-1. Clean previous build artifacts
-2. Create a `dist` directory with all necessary extension files
-3. Update the manifest.json with the version from package.json
-4. Package everything into a zip file in the `build` directory
+```bash
+# Clean, build, and create a Firefox distribution package
+pnpm package:firefox
+```
+
+#### Build Commands Reference
+
+```bash
+# Build Chrome version only (creates dist/ directory)
+pnpm build && pnpm update-manifest
+
+# Build Firefox version only (creates dist/ directory)
+pnpm build:firefox
+
+# Package Chrome extension (creates build/cc-generator-v*.zip)
+pnpm package
+
+# Package Firefox extension (creates build/cc-generator-firefox-v*.zip)
+pnpm package:firefox
+```
+
+The build process:
+
+1. Cleans previous build artifacts
+2. Creates a `dist` directory with all necessary extension files
+3. Updates the manifest.json with the version from package.json
+4. Packages everything into a zip file in the `build` directory
 
 You can also specify a custom version:
 
 ```bash
-# Build with a specific version
+# Build Chrome extension with a specific version
 VERSION=2.1.0 pnpm package
+
+# Build Firefox extension with a specific version
+VERSION=2.1.0 pnpm package:firefox
 ```
 
-The packaged zip file will be named according to the version (e.g., `cc-generator-v2.0.0.zip`).
+The packaged zip files will be named according to the browser and version:
+
+- Chrome: `cc-generator-v2.0.0.zip`
+- Firefox: `cc-generator-firefox-v2.0.0.zip`
 
 ### Release Process
 
