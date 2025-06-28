@@ -10,22 +10,14 @@ const userDataDir = path.join(__dirname, "..", ".playwright-user-data");
 
 /**
  * Fixtures for Playwright tests which allows the
- * testing of cross-browser extensions.
+ * testing of chrome extensions.
  *
  * @see https://playwright.dev/docs/chrome-extensions
  */
 export const test = base.extend({
   context: async ({}, use) => {
-    // Build Chrome version first
-    const { exec } = await import("child_process");
-    await new Promise((resolve, reject) => {
-      exec("pnpm build && pnpm update-manifest", (error) => {
-        if (error) {reject(error);}
-        else {resolve();}
-      });
-    });
-
-    // Launch Chrome with extension
+    // Get headless setting from the configuration
+    // The headless setting is now controlled by playwright.config.js
     const context = await chromium.launchPersistentContext(userDataDir, {
       channel: "chromium",
       args: [
@@ -34,18 +26,17 @@ export const test = base.extend({
       ],
       permissions: ["clipboard-read", "clipboard-write"],
     });
-
     await use(context);
     await context.close();
   },
   extensionId: async ({ context }, use) => {
-    // For Chrome, get from service worker
+    // Wait for the service worker to be available
     let [background] = context.serviceWorkers();
     if (!background) {
       background = await context.waitForEvent("serviceworker");
     }
-    const extensionId = background.url().split("/")[2];
 
+    const extensionId = background.url().split("/")[2];
     await use(extensionId);
   },
   page: async ({ context }, use) => {
