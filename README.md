@@ -1,6 +1,6 @@
 # Credit Card Generator
 
-A cross-platform browser extension for generating valid test credit card numbers for development and testing purposes. Available for both Chrome and Firefox.
+A cross-platform browser extension for generating valid test credit card numbers for development and testing purposes. Available for both [Chrome](https://chrome.google.com/webstore/detail/cc-generator/klcpekhgaebbghffffpofgaipfcdplkc) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/credit-card-generator/).
 
 ## Features
 
@@ -17,6 +17,12 @@ A cross-platform browser extension for generating valid test credit card numbers
 
 1. Visit the [Chrome Web Store page for CC Generator](https://chrome.google.com/webstore/detail/cc-generator/klcpekhgaebbghffffpofgaipfcdplkc)
 2. Click "Add to Chrome"
+3. Confirm the installation
+
+### From Firefox Add-ons
+
+1. Visit the [Firefox Add-ons page for CC Generator](https://addons.mozilla.org/en-US/firefox/addon/credit-card-generator/)
+2. Click "Add to Firefox"
 3. Confirm the installation
 
 ### Manual Installation - Chrome (Developer Mode)
@@ -37,10 +43,6 @@ A cross-platform browser extension for generating valid test credit card numbers
 5. Click "Load Temporary Add-on"
 6. Navigate to the `build` directory and select `cc-generator-firefox-v*.zip`
 7. The extension should now be installed and visible in your toolbar
-
-### Firefox Add-ons Store (Coming Soon)
-
-Firefox add-on store submission is planned for a future release.
 
 ## Usage
 
