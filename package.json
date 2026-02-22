@@ -30,16 +30,16 @@
     "package": "pnpm run package:chrome && pnpm run package:firefox"
   },
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
-    "@vitest/coverage-v8": "^1.2.2",
-    "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.0.1",
-    "jsdom": "^24.0.0",
-    "prettier": "^3.5.2",
-    "vitest": "^1.2.2"
+    "@playwright/test": "^1.58.2",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^28.1.0",
+    "prettier": "^3.8.1",
+    "vitest": "^4.0.18"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20.19.0"
   },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+  "packageManager": "pnpm@10.30.1"
 }
