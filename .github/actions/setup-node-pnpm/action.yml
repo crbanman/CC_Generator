@@ -4,18 +4,18 @@ runs:
   using: "composite"
   steps:
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
-        node-version: "20"
+        node-version: "20.19.0"
 
     - name: Install pnpm
-      uses: pnpm/action-setup@v3
+      uses: pnpm/action-setup@v4
       with:
-        version: "9.15.0"
+        version: "10.30.1"
         run_install: false
 
     - name: Restore node_modules
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: node_modules
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
